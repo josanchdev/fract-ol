@@ -1,5 +1,6 @@
 #include "fractol.h"
 
+
 static int	tricorn_iterations(double x, double y, int max_iterations)
 {
 	double	zx;
@@ -23,6 +24,7 @@ static int	tricorn_iterations(double x, double y, int max_iterations)
 	}
 	return (i);
 }
+
 
 void	calculate_tricorn(t_fractal *fractal)
 {

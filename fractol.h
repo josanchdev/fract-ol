@@ -80,7 +80,7 @@ void		calculate_mandelbrot(t_fractal *fractal);
 // julia.c
 void		calculate_julia(t_fractal *fractal);
 
-// burning_ship.c
+// tricorn.c
 void		calculate_tricorn(t_fractal *fractal);
 
 // main.c

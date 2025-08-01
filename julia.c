@@ -12,7 +12,8 @@
 
 #include "fractol.h"
 
-static int	julia_iterations(double x, double y, double cx, double cy, int max_iterations)
+
+static int	julia_iterations(t_fractal *fractal, double x, double y)
 {
     double	zx;
     double	zy;
@@ -22,19 +23,20 @@ static int	julia_iterations(double x, double y, double cx, double cy, int max_it
     zx = x;
     zy = y;
     i = 0;
-    while (i < max_iterations)
+    while (i < fractal->max_iterations)
     {
         temp_x = (zx * zx) - (zy * zy);
         zy = 2 * zx * zy;
         zx = temp_x;
-        zx += cx;
-        zy += cy;
+        zx += fractal->cx;
+        zy += fractal->cy;
         if ((zx * zx + zy * zy) > 4)
             break ;
         i++;
     }
     return (i);
 }
+
 
 void	calculate_julia(t_fractal *fractal)
 {
@@ -44,7 +46,7 @@ void	calculate_julia(t_fractal *fractal)
 
     x = (fractal->x - SIZE / 2.0) / fractal->zoom + fractal->offset_x;
     y = (fractal->y - SIZE / 2.0) / fractal->zoom + fractal->offset_y;
-    iterations = julia_iterations(x, y, fractal->cx, fractal->cy, fractal->max_iterations);
+    iterations = julia_iterations(fractal, x, y);
     if (iterations == fractal->max_iterations)
         put_color_to_pixel(fractal, fractal->x, fractal->y, 0x000000);
     else
