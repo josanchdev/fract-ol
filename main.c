@@ -25,11 +25,11 @@ int	draw_fractal(t_fractal *fractal, char *query)
 		}
 		draw_julia(fractal);
 	}
-	else if (ft_strncmp(query, "ship", 5) == 0)
-		draw_burning_ship(fractal);
+	else if (ft_strncmp(query, "tricorn", 8) == 0)
+		draw_tricorn(fractal);
 	else
 	{
-		ft_putendl_fd("Available fractals: mandel, julia, ship", 1);
+		ft_putendl_fd("Available fractals: mandel, julia, tricorn", 1);
 		exit_fractal(fractal);
 	}
 	mlx_put_image_to_window(fractal->mlx, fractal->window, fractal->image, 0,
@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 	{
 		ft_putendl_fd("Usage: ./fractol <fractal>", 1);
-		ft_putendl_fd("Available fractals: mandelbrot, julia, burningship", 1);
+		ft_putendl_fd("Available fractals: mandelbrot, julia, tricorn", 1);
 		return (0);
 	}
 	fractal = malloc(sizeof(t_fractal));

@@ -28,29 +28,19 @@ LIBFT_NAME	= libft.a
 LIBFT		= $(LIBFT_PATH)$(LIBFT_NAME)
 
 # Includes
-INC			=	-I ./includes/\
+INC			=	-I ./\
 				-I ./libft/\
 				-I ./minilibx-linux/
 
-# Sources
-SRC_PATH	=	src/
-SRC			=	fractol.c \
-				initialization.c \
-				utils.c \
-				events.c \
-				render.c \
-				color.c \
-				parse_args.c \
-				help_msg.c \
-				fractal_sets/mandelbrot.c \
-				fractal_sets/julia.c \
-				fractal_sets/burning_ship.c \
-				fractal_sets/tricorn.c \
-				fractal_sets/mandelbox.c \
-				color_schemes/color_interpolated.c \
-				color_schemes/color_special.c \
-				color_schemes/color_striped.c
-SRCS		= $(addprefix $(SRC_PATH), $(SRC))
+SRC			=	main.c \
+				init.c \
+				draw.c \
+				mandelbrot.c \
+				julia.c \
+				tricorn.c \
+				mouse_and_keys.c \
+				utils.c
+SRCS		= $(SRC)
 
 # Objects
 OBJ_PATH	= obj/
@@ -59,15 +49,13 @@ OBJS		= $(addprefix $(OBJ_PATH), $(OBJ))
 
 all: $(MLX) $(LIBFT) $(NAME)
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+$(OBJ_PATH)%.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 
 $(OBJS): $(OBJ_PATH)
 
 $(OBJ_PATH):
-	@mkdir $(OBJ_PATH)
-	@mkdir $(OBJ_PATH)fractal_sets/
-	@mkdir $(OBJ_PATH)color_schemes/
+	@mkdir -p $(OBJ_PATH)
 
 $(MLX):
 	@echo "Making MiniLibX..."

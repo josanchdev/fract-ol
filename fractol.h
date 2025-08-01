@@ -79,7 +79,7 @@ void		calculate_mandelbrot(t_fractal *fractal);
 void		calculate_julia(t_fractal *fractal);
 
 // burning_ship.c
-void		calculate_burning_ship(t_fractal *fractal);
+void		calculate_tricorn(t_fractal *fractal);
 
 // main.c
 int			draw_fractal(t_fractal *fractal, char *query);
@@ -91,6 +91,6 @@ int			mouse_hook(int mouse_code, int x, int y, t_fractal *fractal);
 // draw.c
 void		*draw_mandelbrot(void *fractal_void);
 void		draw_julia(t_fractal *fractal);
-void		draw_burning_ship(t_fractal *fractal);
+void		draw_tricorn(t_fractal *fractal);
 
 #endif

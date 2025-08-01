@@ -60,7 +60,7 @@ int	key_hook(int key_code, t_fractal *fractal)
 	else if (key_code == C)
 		fractal->color += (255 * 255 * 255) / 100;
 	else if (key_code == J)
-		set_random_julia(&fractal->cx, &fractal->cx);
+		set_random_julia(&fractal->cx, &fractal->cy);
 	else if (key_code == M || key_code == P)
 		change_iterations(fractal, key_code);
 	draw_fractal(fractal, fractal->name);
