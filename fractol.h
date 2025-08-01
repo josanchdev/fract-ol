@@ -21,7 +21,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define SIZE 700
+# define SIZE 1000
 # define MAX_ITERATIONS 50
 
 // LINUX KEYCODES

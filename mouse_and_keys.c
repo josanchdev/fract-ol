@@ -15,26 +15,24 @@
 void	zoom(t_fractal *fractal, int x, int y, int zoom)
 {
 	double	zoom_level;
+	double	mouse_x;
+	double	mouse_y;
 
-	zoom_level = 1.42;
+	zoom_level = 1.3;
+	mouse_x = (x - SIZE / 2.0) / fractal->zoom + fractal->offset_x;
+	mouse_y = (y - SIZE / 2.0) / fractal->zoom + fractal->offset_y;
 	if (zoom == 1)
 	{
-		fractal->offset_x = (x / fractal->zoom + fractal->offset_x) - (x
-				/ (fractal->zoom * zoom_level));
-		fractal->offset_y = (y / fractal->zoom + fractal->offset_y) - (y
-				/ (fractal->zoom * zoom_level));
 		fractal->zoom *= zoom_level;
+		fractal->offset_x = mouse_x - (x - SIZE / 2.0) / fractal->zoom;
+		fractal->offset_y = mouse_y - (y - SIZE / 2.0) / fractal->zoom;
 	}
 	else if (zoom == -1)
 	{
-		fractal->offset_x = (x / fractal->zoom + fractal->offset_x) - (x
-				/ (fractal->zoom / zoom_level));
-		fractal->offset_y = (y / fractal->zoom + fractal->offset_y) - (y
-				/ (fractal->zoom / zoom_level));
 		fractal->zoom /= zoom_level;
+		fractal->offset_x = mouse_x - (x - SIZE / 2.0) / fractal->zoom;
+		fractal->offset_y = mouse_y - (y - SIZE / 2.0) / fractal->zoom;
 	}
-	else
-		return ;
 }
 
 void	set_random_julia(double *cx, double *cy)
@@ -45,16 +43,19 @@ void	set_random_julia(double *cx, double *cy)
 
 int	key_hook(int key_code, t_fractal *fractal)
 {
+	double	move_speed;
+
+	move_speed = 50.0 / fractal->zoom;
 	if (key_code == XK_Escape)
 		exit_fractal(fractal);
 	else if (key_code == XK_Left)
-		fractal->offset_x -= 42 / fractal->zoom;
+		fractal->offset_x -= move_speed;
 	else if (key_code == XK_Right)
-		fractal->offset_x += 42 / fractal->zoom;
+		fractal->offset_x += move_speed;
 	else if (key_code == XK_Up)
-		fractal->offset_y -= 42 / fractal->zoom;
+		fractal->offset_y -= move_speed;
 	else if (key_code == XK_Down)
-		fractal->offset_y += 42 / fractal->zoom;
+		fractal->offset_y += move_speed;
 	else if (key_code == XK_r)
 		init_fractal(fractal);
 	else if (key_code == XK_c)
