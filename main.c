@@ -44,10 +44,11 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 	{
 		ft_putendl_fd("Usage: ./fractol <fractal>", 1);
-		ft_putendl_fd("Available fractals: mandelbrot, julia, tricorn", 1);
+		ft_putendl_fd("Available fractals: mandel, julia, tricorn", 1);
 		return (0);
 	}
 	fractal = malloc(sizeof(t_fractal));
+	fractal->name = argv[1];
 	init_fractal(fractal);
 	init_mlx(fractal);
 	mlx_key_hook(fractal->window, key_hook, fractal);

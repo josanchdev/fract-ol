@@ -15,27 +15,29 @@
 
 # include "libft/libft.h"
 # include "minilibx-linux/mlx.h"
+# include <X11/keysym.h>
+# include <X11/X.h>
 # include <math.h>
-# include <pthread.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 # define SIZE 700
-# define THREAD_WIDTH 7
-# define THREAD_NUMBER 100
+# define MAX_ITERATIONS 50
 
-// KEYCODES
-# define ESC 53
-# define UP 126
-# define DOWN 125
-# define LEFT 123
-# define RIGHT 124
-# define R 15
-# define C 8
-# define H 4
-# define J 38
-# define P 35
-# define M 46
+// LINUX KEYCODES
+# define ESC 65307
+# define UP 65362
+# define DOWN 65364
+# define LEFT 65361
+# define RIGHT 65363
+# define R 114
+# define C 99
+# define H 104
+# define J 106
+# define P 112
+# define M 109
 
-// MOUSECODES
+// LINUX MOUSECODES
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
 
@@ -89,7 +91,7 @@ int			key_hook(int key_code, t_fractal *fractal);
 int			mouse_hook(int mouse_code, int x, int y, t_fractal *fractal);
 
 // draw.c
-void		*draw_mandelbrot(void *fractal_void);
+void		draw_mandelbrot(t_fractal *fractal);
 void		draw_julia(t_fractal *fractal);
 void		draw_tricorn(t_fractal *fractal);
 
